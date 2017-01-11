@@ -30,12 +30,10 @@ function max(num1, num2)
    end
    return r
 end
-
 --test function 2
 function add(num1, num2)
 	return num1 + num2
 end
-
 print("hello world")
 print("max ", max(10,8))
 ```
@@ -64,7 +62,6 @@ main <test.lua:0,0> (15 instructions at 0000000000180370)
 	13	[17]	CALL     	2 3 0
 	14	[17]	CALL     	0 0 1
 	15	[17]	RETURN   	0 1
-
 function <test.lua:2,9> (8 instructions at 0000000000180640)
 2 params, 3 slots, 1 upvalue, 2 locals, 1 constant, 0 functions
 	1	[3]	LT       	0 1 0
@@ -75,7 +72,6 @@ function <test.lua:2,9> (8 instructions at 0000000000180640)
 	6	[8]	GETTABUP 	2 0 -1	; _ENV "r"
 	7	[8]	RETURN   	2 2
 	8	[9]	RETURN   	0 1
-
 function <test.lua:12,14> (3 instructions at 00000000001809C0)
 2 params, 3 slots, 0 upvalues, 2 locals, 0 constants, 0 functions
 	1	[13]	ADD      	2 0 1
