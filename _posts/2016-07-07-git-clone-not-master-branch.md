@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Git 如何 clone 非 master 分支的代码"
+title:  "Gitclone非master分支的代码"
 categories: GitHub
-tags:  Git GitHub 分支
+tags:  Git GitHub
 ---
 
 * content

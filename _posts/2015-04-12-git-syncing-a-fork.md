@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "同步一个 fork"
+title:  "github repos fork同步"
 date:   2015-04-12 15:14:54
 categories: GitHub
-tags: GitHub 同步 fork
+tags: GitHub fork
 ---
 
 * content
