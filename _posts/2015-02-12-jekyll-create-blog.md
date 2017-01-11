@@ -1,10 +1,7 @@
-解释：	C		LN		OPCODE			A	B	C
-			C		LN		OPCODE			A	Bx
-			C		LN		OPCODE			A	sBx
-	备注：C-代表指令数量,LN代表指令的行号---
+---
 layout: post
-title:  "Jekyll 搭建静态博客"
-date:   2015-02-15 22:14:54
+title:  "jekyll 搭建静态博客"
+date:   2015-08-15 22:14:54
 categories: jekyll
 tags: jekyll
 ---
@@ -134,7 +131,7 @@ gem ins hitimes -v 1.2.1 --platform ruby
 下面是我自己的卸载和安装过程：
 
 ```
-E:\GitWorkSpace\gaohaoyang.github.io>gem uni hitimes
+E:\GitWorkSpace\abaojin.github.io>gem uni hitimes
 
 You have requested to uninstall the gem:
         hitimes-1.2.2-x86-mingw32
@@ -144,7 +141,7 @@ If you remove this gem, these dependencies will not be met.
 Continue with Uninstall? [yN]  y
 Successfully uninstalled hitimes-1.2.2-x86-mingw32
 
-E:\GitWorkSpace\gaohaoyang.github.io>gem ins hitimes -v 1.2.1 --platform ruby
+E:\GitWorkSpace\abaojin.github.io>gem ins hitimes -v 1.2.1 --platform ruby
 Fetching: hitimes-1.2.1.gem (100%)
 Temporarily enhancing PATH to include DevKit...
 Building native extensions.  This could take a while...
