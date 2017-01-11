@@ -14,7 +14,9 @@ lua虚拟机最终执行的是经过lua编译器编译的字节码，我们暂�
 只关系字节码本身，字节码的格式到底是什么？具体含义是是什么？
 
 ## 字节码格式
+
 ### 源码案例：
+
 ```
 --test function 1
 function max(num1, num2)
@@ -34,7 +36,9 @@ end
 console("hello world")
 console("max ", max(10,8))
 ```
+
 ### 对应字节码：
+
 ```
 main <test.lua:0,0> (15 instructions at 0000000000180370)
 0+ params, 5 slots, 1 upvalue, 0 locals, 7 constants, 2 functions
@@ -71,7 +75,9 @@ function <test.lua:12,14> (3 instructions at 00000000001809C0)
 	2	[13]	RETURN   	2 2
 	3	[14]	RETURN   	0 1
 ```
+
 ### 具体含义：
+
 ```
 C		LN		OPCODE			A	B	C
 C		LN		OPCODE			A	Bx
@@ -79,8 +85,11 @@ C		LN		OPCODE			A	sBx
 备注C-代表指令数量,LN代表指令的行号
 ```
 
+
 ## 指令分类
+
 种类：iABC	iABx	iAsBx	iAx
+
 代码中定义：enum OpMode {iABC, iABx, iAsBx, iAx};  /* basic instruction format */
 
 ## iABC指令

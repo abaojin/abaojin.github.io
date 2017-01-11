@@ -1,4 +1,7 @@
----
+解释：	C		LN		OPCODE			A	B	C
+			C		LN		OPCODE			A	Bx
+			C		LN		OPCODE			A	sBx
+	备注：C-代表指令数量,LN代表指令的行号---
 layout: post
 title:  "Jekyll 搭建静态博客"
 date:   2015-02-15 22:14:54
