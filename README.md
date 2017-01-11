@@ -43,16 +43,6 @@
 * [Update Log](#update-log)
 * [License](#license)
 
-## 预览图
-
-先上预览图：
-
-主页
-![index](http://ww3.sinaimg.cn/large/7011d6cfjw1f3bdli86awj211k0oyqen.jpg)
-
-文章页
-![post](http://ww4.sinaimg.cn/large/7011d6cfjw1f3bdmzb9v6j210p0j7gwn.jpg)
-
 ## 各部分详情
 
 ### 主页 Home
