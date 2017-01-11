@@ -12,7 +12,6 @@
 
 ## 目录
 
-* [预览图](#预览图)
 * [各部分详情](#各部分详情)
     * [主页 Home](#主页-home)
     * [归档页 Archives](#归档页-archives)
@@ -39,7 +38,6 @@
     * [4. 写文章](#4-写文章)
     * [5. 本地运行](#5-本地运行)
     * [6. 发布到 GitHub](#6-发布到-github)
-* [捐助 donate](#捐助-donate)
 * [Update Log](#update-log)
 * [License](#license)
 
@@ -233,7 +231,7 @@ title:  "对这个 jekyll 博客主题的改版和重构"
 date:   2016-03-12 11:40:18 +0800
 categories: jekyll
 tags: jekyll 端口 markdown Foxit RubyGems HTML CSS
-author: Haoyang Gao
+author: abaojin
 ---
 ```
 
