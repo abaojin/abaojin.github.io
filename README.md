@@ -24,7 +24,6 @@
     * [目录 Contents](#目录-contents)
     * [代码高亮](#代码高亮)
     * [灯泡效果](#灯泡效果)
-    * [移动端适配](#移动端适配)
     * [Footer](#footer)
     * [统计](#统计)
 * [博客主题使用方法](#博客主题使用方法)
@@ -98,12 +97,6 @@ disqus_shortname: xxx
 ![light](http://ww3.sinaimg.cn/large/7011d6cfjw1f3be6y4vp3j209i02rweg.jpg)
 
 可以看到导航按钮高亮时，下面的阴影效果，我把这个称为灯泡效果。
-
-### 移动端适配
-
-完美适配移动端。
-
-![mobile](http://ww4.sinaimg.cn/large/7011d6cfjw1f3bebnzxkpj20ah0fzgp4.jpg)
 
 ### Footer
 
@@ -329,4 +322,4 @@ Configuration file: E:/GitWorkSpace/blog/_config.yml
 
 ## License
 
-[MIT License](https://github.com/abaojin/abaojin.github.io/LICENSE)
+[MIT License](https://raw.githubusercontent.com/abaojin/abaojin.github.io/master/LICENSE)
