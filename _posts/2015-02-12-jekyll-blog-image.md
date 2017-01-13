@@ -9,4 +9,4 @@ tags: jekyll
 * content
 {:toc}
 
-![ttestimage](image/test_001.jpg)
+![ttestimage](/image/test_001.jpg)
