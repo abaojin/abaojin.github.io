@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jekyll 支持多媒体图片附件"
+title:  "jekyll 添加多媒体图片和附件"
 date:   2017-01-13 22:14:54
 categories: jekyll
 tags: jekyll
