@@ -98,8 +98,11 @@ str1）被垃圾回收器回收，但是CLR已将这个str1的副本添加到哈
 ## 参考资料
 
 [CSDN字符串只是梳理](http://www.cnblogs.com/solan/archive/2012/08/03/CSharp07.html?utm_source=tuicool&utm_medium=referral)
+
 [MSDN字符串特效介绍](https://msdn.microsoft.com/en-us/library/ms228362.aspx)
+
 [String字符串源码实现](https://referencesource.microsoft.com/#mscorlib/system/string.cs,8281103e6f23cb5c)
+
 [Object对象源码实现](https://referencesource.microsoft.com/#mscorlib/system/object.cs,d9262ceecc1719ab)
 
 
