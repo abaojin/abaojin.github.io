@@ -8,174 +8,99 @@ tags: csharp
 * content
 {:toc}
 
-## lua字节码
+## string类型
 
-lua虚拟机最终执行的是经过lua编译器编译的字节码，我们暂且不关系Chunk生成字节码过程，
-只关系字节码本身，字节码的格式到底是什么？具体含义是是什么？
+引用类型,class String继承自System.Object,但是String是一个特殊的引用
+类型，特殊关键在两点:不可变性和常驻性。
 
-## 字节码格式
+## string对象不可变性
 
-lua字节码指令是由4个字节32位确定, 代码是如何被翻译成对应的32位指令，同样这里我们先
-不关心，我们关心只是一段lua代码编译出的字节码指令到底是什么。
-
-### 源码案例：
-
-```
---test function 1
-function max(num1, num2)
-   if (num1 > num2) then
-	  r = num1
-   else
-	  r = num2
-   end
-   return r
-end
---test function 2
-function add(num1, num2)
-	return num1 + num2
-end
-print("hello world")
-print("max ", max(10,8))
-```
-
-这里定义了两个函数，max函数和add函数，并进行简单实现，首先调用print函数输出hello world
-然后调用自定义函数max，函数add是没有任何调用只是定义，关心的是这段代码生成的字节码的结
-是什么，这里我们使用lua5.2.1版本lauc编译器，使用指令：luac -l test.lua进行编译。
-
-### 对应字节码：
+字符串对象一旦创建，在整个进程的生命周期中是不可改变的，无法对其进行
+加长、缩短、改变等操作，既然它不可变，所以也就不存在线程同步的问题。
+看看下面代码：
 
 ```
-main <test.lua:0,0> (15 instructions at 0000000000180370)
-0+ params, 5 slots, 1 upvalue, 0 locals, 7 constants, 2 functions
-	1	[9]	CLOSURE  	0 0	; 0000000000180640
-	2	[2]	SETTABUP 	0 -1 0	; _ENV "max"
-	3	[14]	CLOSURE  	0 1	; 00000000001809C0
-	4	[12]	SETTABUP 	0 -2 0	; _ENV "add"
-	5	[16]	GETTABUP 	0 0 -3	; _ENV "console"
-	6	[16]	LOADK    	1 -4	; "hello world"
-	7	[16]	CALL     	0 2 1
-	8	[17]	GETTABUP 	0 0 -3	; _ENV "console"
-	9	[17]	LOADK    	1 -5	; "max "
-	10	[17]	GETTABUP 	2 0 -1	; _ENV "max"
-	11	[17]	LOADK    	3 -6	; 10
-	12	[17]	LOADK    	4 -7	; 8
-	13	[17]	CALL     	2 3 0
-	14	[17]	CALL     	0 0 1
-	15	[17]	RETURN   	0 1
-function <test.lua:2,9> (8 instructions at 0000000000180640)
-2 params, 3 slots, 1 upvalue, 2 locals, 1 constant, 0 functions
-	1	[3]	LT       	0 1 0
-	2	[3]	JMP      	0 2	; to 5
-	3	[4]	SETTABUP 	0 -1 0	; _ENV "r"
-	4	[4]	JMP      	0 1	; to 6
-	5	[6]	SETTABUP 	0 -1 1	; _ENV "r"
-	6	[8]	GETTABUP 	2 0 -1	; _ENV "r"
-	7	[8]	RETURN   	2 2
-	8	[9]	RETURN   	0 1
-function <test.lua:12,14> (3 instructions at 00000000001809C0)
-2 params, 3 slots, 0 upvalues, 2 locals, 0 constants, 0 functions
-	1	[13]	ADD      	2 0 1
-	2	[13]	RETURN   	2 2
-	3	[14]	RETURN   	0 1
-```
+string str1 = "Hello";
+string str2 = str1;            
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
 
-### 指令解释：
-
-上面的源码生成指令可以看出来，每一行是一个指令是由32位组成，每一行指令主要包含两部分
-第一部分操作码opcode和二部分操作寄存器，惭怍寄存器可能是3个可能是2两个，也可能是3个
-每一行指令前两部分不是指令具体内容，只是指令的辅助内容，第一个字段是指令数量，第二个
-字段是是指令的对应的源码的行数。
-
-通过上面的结果我们可以看出来，每一个lua函数，lua都会生成一块指令块，该指令块包含该函数
-的内容指令。同时最关键的是lua源码Chunk默认会生成一个main函数，该指令块主要包含lua的执行
-过程，以及调用函数过程。
-
-
-## 指令分类
-
-四种指令：iABC	iABx	iAsBx	iAx,代码中定义：enum OpMode {iABC, iABx, iAsBx, iAx};
-lua所有指令前6位是操作码opcode,剩下组成部分如下：
-
-```
-Instructions can have the following fields:
-	`A' : 8 bits
-	`B' : 9 bits
-	`C' : 9 bits
-	'Ax' : 26 bits ('A', 'B', and 'C' together)
-	`Bx' : 18 bits (`B' and `C' together)
-	`sBx' : signed Bx
-```
-
-## 所有指令
-
-这里的指令是5.2.1版本里面所有的指令都定义在lopcode.h头文件中定义，代码如下：
-
-```
-/*----------------------------------------------------------------------
-name		args	description
-------------------------------------------------------------------------*/
-OP_MOVE,/*	A B	R(A) := R(B)					*/
-OP_LOADK,/*	A Bx	R(A) := Kst(Bx)					*/
-OP_LOADKX,/*	A 	R(A) := Kst(extra arg)				*/
-OP_LOADBOOL,/*	A B C	R(A) := (Bool)B; if (C) pc++			*/
-OP_LOADNIL,/*	A B	R(A), R(A+1), ..., R(A+B) := nil		*/
-OP_GETUPVAL,/*	A B	R(A) := UpValue[B]				*/
-
-OP_GETTABUP,/*	A B C	R(A) := UpValue[B][RK(C)]			*/
-OP_GETTABLE,/*	A B C	R(A) := R(B)[RK(C)]				*/
-
-OP_SETTABUP,/*	A B C	UpValue[A][RK(B)] := RK(C)			*/
-OP_SETUPVAL,/*	A B	UpValue[B] := R(A)				*/
-OP_SETTABLE,/*	A B C	R(A)[RK(B)] := RK(C)				*/
-
-OP_NEWTABLE,/*	A B C	R(A) := {} (size = B,C)				*/
-
-OP_SELF,/*	A B C	R(A+1) := R(B); R(A) := R(B)[RK(C)]		*/
-
-OP_ADD,/*	A B C	R(A) := RK(B) + RK(C)				*/
-OP_SUB,/*	A B C	R(A) := RK(B) - RK(C)				*/
-OP_MUL,/*	A B C	R(A) := RK(B) * RK(C)				*/
-OP_DIV,/*	A B C	R(A) := RK(B) / RK(C)				*/
-OP_MOD,/*	A B C	R(A) := RK(B) % RK(C)				*/
-OP_POW,/*	A B C	R(A) := RK(B) ^ RK(C)				*/
-OP_UNM,/*	A B	R(A) := -R(B)					*/
-OP_NOT,/*	A B	R(A) := not R(B)				*/
-OP_LEN,/*	A B	R(A) := length of R(B)				*/
-
-OP_CONCAT,/*	A B C	R(A) := R(B).. ... ..R(C)			*/
-
-OP_JMP,/*	A sBx	pc+=sBx; if (A) close all upvalues >= R(A) + 1	*/
-OP_EQ,/*	A B C	if ((RK(B) == RK(C)) ~= A) then pc++		*/
-OP_LT,/*	A B C	if ((RK(B) <  RK(C)) ~= A) then pc++		*/
-OP_LE,/*	A B C	if ((RK(B) <= RK(C)) ~= A) then pc++		*/
-
-OP_TEST,/*	A C	if not (R(A) <=> C) then pc++			*/
-OP_TESTSET,/*	A B C	if (R(B) <=> C) then R(A) := R(B) else pc++	*/
-
-OP_CALL,/*	A B C	R(A), ... ,R(A+C-2) := R(A)(R(A+1), ... ,R(A+B-1)) */
-OP_TAILCALL,/*	A B C	return R(A)(R(A+1), ... ,R(A+B-1))		*/
-OP_RETURN,/*	A B	return R(A), ... ,R(A+B-2)	(see note)	*/
-
-OP_FORLOOP,/*	A sBx	R(A)+=R(A+2);
-			if R(A) <?= R(A+1) then { pc+=sBx; R(A+3)=R(A) }*/
-OP_FORPREP,/*	A sBx	R(A)-=R(A+2); pc+=sBx				*/
-
-OP_TFORCALL,/*	A C	R(A+3), ... ,R(A+2+C) := R(A)(R(A+1), R(A+2));	*/
-OP_TFORLOOP,/*	A sBx	if R(A+1) ~= nil then { R(A)=R(A+1); pc += sBx }*/
-
-OP_SETLIST,/*	A B C	R(A)[(C-1)*FPF+i] := R(A+i), 1 <= i <= B	*/
-
-OP_CLOSURE,/*	A Bx	R(A) := closure(KPROTO[Bx])			*/
-
-OP_VARARG,/*	A B	R(A), R(A+1), ..., R(A+B-2) = vararg		*/
-
-OP_EXTRAARG/*	Ax	extra (larger) argument for previous opcode	*/
+str1 += " World";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //False
 ```
 
 
 
-	
+第一次调用object.ReferenceEquals方法比较的str1和str2，它们指向的是同一个
+字符串对象引用，所以结果为true，而str1 += " World";的过程是重新创建了一个
+对象，且把新的对象引用赋给str1，此时str1与str2指向的不是同一个对象引用，
+所以在第二次调用object.ReferenceEquals方法时返回的是false。无论是使用+=操
+作符还是其他的对字符串修改的方法，都会引起重新创建字符串对象，并且复制旧的
+字符串到新的内存区，而不是我们常说的“对XX字符串进行修改”，如果非要说“改变”，
+那就是对对象引用的改变。
 
+## string对象的驻留性
+
+根据前面的描述，字符串是不可变的，而在编程中，我们会大量使用字符串，这
+就会导致不停地创建字符串对象，不停地分配内存，并且很有可能不停地执行垃
+圾回收，如此以来会大大损伤性能,所以CLR对字符串进行了特殊的优化机制，下
+面我们来对这些机制及特性进行描述。
+
+字符串驻留是CLR提供的一种提高性能的对待字符串的机制，它保证在一个进程内
+的某个字符串在内存中只分配一次。看以下代码：
+
+```
+string str1 = "abc";
+string str2 = "abc";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+```
+
+这里声明了两个对象str1和str2，调用object.ReferenceEquals方法返回的是True，
+为什么它们指向的是同一个引用呢？这就说明了CLR的字符串驻留，相同的字符串在
+托管内存中只分配一次，再次声明相同的字符串对象时，会将后来一次的声明指向第
+一次声明所引用的对象。那么CLR如何保证做到的呢？原来，在CLR初始化时创建一个
+内部的哈希表，我们知道哈希表在处理表内数据时是非常快的，这个表相当于一个字
+典表（HashMap<TKey,TValue>），键就是字符串，而值是指向托管堆中该字符串对象
+的引用，当在声明一个字符串时，会调用对象的Intern方法，该方法接收一个string
+对象，它会先在哈希表中检查该字符串是否存在？如果存在，则返回这个字符串对应
+的对象引用；否则，将创建该字符串的副本，并将副本添加到哈希表中，最后返回对
+该副本对象的引用。String类还提供了一个IsInterned方法，该方法会根据字符串在
+哈希表中检查是否已经存在相同的串，如果存在，则返回该字符串对象的引用，否则
+，返回null，但它是它不会向哈希表中添加字符串。我们对上面的代码进行改造：
+
+```
+string str1 = "abc";
+string str2 = "abc";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+str1 += str2;
+Console.WriteLine(str1);
+```
+
+字符串”abc”是有驻留的,+=操作是要重新创建对象的，但CLR对临时计算的新对象"abcabc"
+没有进行驻留。这里可以看出，并不是所有的字符串都会进行驻留，我们将代码改成这样：
+
+```
+string str1 = "abc";
+string str2 = "abc";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+str1 += str2;
+Console.WriteLine(str1);
+string str3 = "abcabc";
+Console.WriteLine(object.ReferenceEquals(str1, str3)); //False
+str1 = string.Intern(str1);
+Console.WriteLine(object.ReferenceEquals(str1, str3)); //True
+```
+
+在没有使用string.Intern方法是，字符串对象是没有驻留的，使用这个方法后，"abcabc"
+是进行驻留，值得注意是：尽管String.Intern(string)方法的字符串参数（上面代码中的
+str1）被垃圾回收器回收，但是CLR已将这个str1的副本添加到哈希表中，垃圾回收器是无
+法对哈希表引用的字符串进行回收。
+
+## 参考资料
+
+[CSDN字符串只是梳理](http://www.cnblogs.com/solan/archive/2012/08/03/CSharp07.html?utm_source=tuicool&utm_medium=referral)
+[MSDN字符串特效介绍](https://msdn.microsoft.com/en-us/library/ms228362.aspx)
+[String字符串源码实现](https://referencesource.microsoft.com/#mscorlib/system/string.cs,8281103e6f23cb5c)
+[Object对象源码实现](https://referencesource.microsoft.com/#mscorlib/system/object.cs,d9262ceecc1719ab)
 
 
 
