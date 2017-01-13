@@ -9,6 +9,7 @@ tags: jekyll
 * content
 {:toc}
 
+
 ## 图片
 
 图片是博客系统中使用非常频繁的表达方式，如何在你博客加入图片呢，这里
@@ -17,6 +18,8 @@ tags: jekyll
 下面是一张图片显示案例。
 
 ![test_001](/media/image/test_001.jpg)
+
+
 
 ## 附件
 
@@ -28,7 +31,8 @@ tags: jekyll
 ## 说明
 
 添加多媒体有很多种方式，这里只是介绍最简单一种，也可以按照上面格式输入
-多媒体全路径。
+多媒体全路径。如果不懂这种方式，可以直接fork项目看编码实现：[abaojin]
+(https://github.com/abaojin/abaojin.github.io)。
 
 ## 参考资料
 
