@@ -14,6 +14,8 @@ tags: lua
 研究lua源码本身起着重要作用，故此在这里简单介绍一下lua脚本是何时被加载、又是
 何时执行的。
 
+
+
 ## LuaState
 
 想要更好的理解脚本执行流程，就必须先了解LuaState相关初始化，源码里简称L，lua
@@ -110,6 +112,7 @@ private void V_Execute() {
 ## 参考资料
 
 [UniLua源码](https://github.com/xebecnan/UniLua)
+
 [lua源码](https://github.com/lua/lua)
 
 
