@@ -7,7 +7,7 @@
 
 # Site settings
 title: abaojin
-brief-intro: Dev Engineer
+brief-intro: 开发工程师
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://abaojin.github.io" # the base hostname & protocol for your site
 
