@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Collections
+title: 集合
 permalink: /collection/
 icon: bookmark
 type: page
