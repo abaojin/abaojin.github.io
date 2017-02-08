@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "bazel 使用的简单介绍"
+title:  "bazel 简单介绍"
 categories: build
 tags: bazel build
 ---
