@@ -20,6 +20,7 @@ Bazel呢？原因是Bazel足够的强大，主要表现这几个方便：
 
 
 
+
 ### 速度
 
 Bazel拥有优化的依赖分析，高效缓存和并行执行构建的行为，你能获得更加快速构建和清理。
@@ -52,9 +53,13 @@ Bazel目前还处于测试阶段，有很多功能还是存在缺陷的，但是
 ## Bazel使用
 
 Bazel使用相对来说也是比较简单的，Bazel官网的资料也写的非常的详细，这里就不介绍具体使用
-方法。[构建java案例](https://bazel.build/versions/master/docs/tutorial/java.html)
-，[构建c++案例](https://bazel.build/versions/master/docs/tutorial/cpp.html),[构建
-Mobile Application案例-iOS和Andoroid](https://bazel.build/versions/master/docs/tutorial/app.html)。
+方法。
+
+[构建java案例](https://bazel.build/versions/master/docs/tutorial/java.html)
+
+[构建c++案例](https://bazel.build/versions/master/docs/tutorial/cpp.html)
+
+[构建Mobile Application案例-iOS和Andoroid](https://bazel.build/versions/master/docs/tutorial/app.html)
 
 ## 参考资料
 
