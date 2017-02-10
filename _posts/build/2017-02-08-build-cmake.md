@@ -9,14 +9,14 @@ tags: cmake build
 {:toc}
 
 CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述所有平台的安装(编译过程)。他能够输
-出各种各样的makefile或者project文件,能测试编译器所支持的C++特性,类似UNIX下的automake。
+出各种各样的makefile或者project文件,能测试编译器所支持的C++特性,类似UNIX下的automake。CMake
+的所有的语句都写在一个叫:CMakeLists.txt 的文件中。当CMakeLists.txt文件确定后,可以用ccmake命
+令对相关 的变量值进行配置。这个命令必须指向CMakeLists.txt所在的目录。配置完成之后,应用cmake
+命令生成相应的makefile（在Unix like系统下）或者 project文件（指定用window下的相应编程工具编
+译时）。
 
-## 使用方法
 
-CMake的所有的语句都写在一个叫:CMakeLists.txt 的文件中。当CMakeLists.txt文件确定后,可以
-用ccmake命令对相关 的变量值进行配置。这个命令必须指向CMakeLists.txt所在的目录。配置完成
-之后,应用cmake命令生成相应的makefile（在Unix like系统下）或者 project文件（指定用window
-下的相应编程工具编译时）。
+
 
 ## CMakeLists.txt剖析
 
