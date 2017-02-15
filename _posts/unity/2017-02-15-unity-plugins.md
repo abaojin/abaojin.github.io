@@ -23,11 +23,17 @@ Unity5也会支持插件存放的目录，进行默认的插件设置。
 规则如下:
 
 文件夹	                                                  默认插件设置
+
 Assets/**/Editor	                                    只兼容Editor
+
 Assets/**/Editor/(x86 or x86_64 or x64)	                只兼容Editor，如果子文件夹存在，用于匹配目标CPU
+
 Assets/Plugins/x86_64(or x64)	                        x64兼容
+
 Assets/Plugins/x86	                                    x86兼容
+
 Assets/Plugins/Android/(x86 or armeabi or armeabi-v7a)	只跟Android兼容，如果子文件夹存在，用于匹配目标CPU
+
 Assets/Plugins/iOS	                                    只跟iOS兼容
 
 
