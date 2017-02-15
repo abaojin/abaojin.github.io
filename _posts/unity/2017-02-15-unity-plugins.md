@@ -22,20 +22,15 @@ Unity5也会支持插件存放的目录，进行默认的插件设置。
 
 规则如下:
 
-文件夹	                                                  默认插件设置
-
+```
+文件夹	                                                默认插件设置
 Assets/**/Editor	                                    只兼容Editor
-
 Assets/**/Editor/(x86 or x86_64 or x64)	                只兼容Editor，如果子文件夹存在，用于匹配目标CPU
-
 Assets/Plugins/x86_64(or x64)	                        x64兼容
-
 Assets/Plugins/x86	                                    x86兼容
-
 Assets/Plugins/Android/(x86 or armeabi or armeabi-v7a)	只跟Android兼容，如果子文件夹存在，用于匹配目标CPU
-
 Assets/Plugins/iOS	                                    只跟iOS兼容
-
+```
 
 
 
@@ -60,7 +55,8 @@ Assets/Plugins/iOS	                                    只跟iOS兼容
 
 ### 编译工具
 
-编译工具使用CMake，不熟悉的可以查看官方文档，或者是:[cmake 简单介绍](https://abaojin.github.io/2017/02/10/build-cmake/),
+这里给出demo的编译工具使用CMake，当然你也可以使用其他的编译工具如make等，不熟悉的可以查看官方文档，
+或者是:[cmake 简单介绍](https://abaojin.github.io/2017/02/10/build-cmake/),
 也可以查看：[CMake官网](https://cmake.org/)，这里就不过多介绍CMake的相关规则。
 
 math_helper.h
