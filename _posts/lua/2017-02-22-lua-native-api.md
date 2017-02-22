@@ -28,6 +28,8 @@ void lua_createtable(lua_State *L, int narr, int nrec)
  创建表的另一个api，常用这个api,上面的宏一定很清楚不多介绍。
  ```
 
+
+
 #### 2.取表中元素
 ```
 void lua_getfield (lua_State *L, int index, const char *k)
