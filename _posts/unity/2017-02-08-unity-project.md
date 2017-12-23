@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Unity 资源结构设计"
-categories: Unity
-tags: Unity
+categories: unity
+tags: unity
 ---
 
 * content

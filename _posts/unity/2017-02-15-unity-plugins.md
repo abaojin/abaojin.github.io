@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Unity 插件开发"
-categories: Unity
-tags: Unity
+categories: unity
+tags: unity
 ---
 
 * content
