@@ -25,8 +25,8 @@ tags: unity
 V1=(x1, y1, z1) <br>
 V2=(x2, y2, z2)
 
-|V1|=根号x1*x1 + y1*y1 + z1*z1 <br>
-|V2|=根号x2*x2 + y2*y2 + z2*z2
+|V1| = 根号x1*x1 + y1*y1 + z1*z1 <br>
+|V2| = 根号x2*x2 + y2*y2 + z2*z2
 
 ## 点乘 dot
 
