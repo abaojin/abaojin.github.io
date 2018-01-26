@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "tensorflow之Window源码编译"
+title:  "ai tensorflow之Window源码编译"
 categories: ai
-tags: ai tensorflow
+tags: ai
 ---
 
 * content

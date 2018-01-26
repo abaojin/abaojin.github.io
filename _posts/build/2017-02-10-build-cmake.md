@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "cmake 简单介绍"
+title:  "build cmake简单介绍"
 categories: build
 tags: cmake build
 ---

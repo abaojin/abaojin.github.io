@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "make 使用简单介绍"
+title:  "build make使用简单介绍"
 categories: build
 tags: make build
 ---

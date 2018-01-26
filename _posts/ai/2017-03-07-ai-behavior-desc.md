@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "AI Behavior Tree介绍（1）"
-categories: AI
-tags: AI
+title:  "ai BehaviorTree介绍（1）"
+categories: ai
+tags: ai
 ---
 
 * content

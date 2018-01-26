@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "C 函数变长参数解析"
+title:  "clang 函数变长参数解析"
 date:   2017-01-13 23:14:54
 categories: clang
 tags: clang
