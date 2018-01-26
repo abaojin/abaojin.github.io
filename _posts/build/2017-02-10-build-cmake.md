@@ -2,7 +2,7 @@
 layout: post
 title:  "build cmake简单介绍"
 categories: build
-tags: cmake build
+tags: build
 ---
 
 * content

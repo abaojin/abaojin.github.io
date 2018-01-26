@@ -2,7 +2,7 @@
 layout: post
 title:  "build make使用简单介绍"
 categories: build
-tags: make build
+tags: build
 ---
 
 * content

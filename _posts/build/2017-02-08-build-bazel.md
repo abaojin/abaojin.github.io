@@ -2,7 +2,7 @@
 layout: post
 title:  "build bazel简单介绍"
 categories: build
-tags: bazel build
+tags: build
 ---
 
 * content
