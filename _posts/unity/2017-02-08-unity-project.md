@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Unity 资源结构设计"
+title:  "unity 资源结构设计"
 categories: unity
 tags: unity
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Linux 常用指令查看"
+title:  "linux 常用指令查看"
 date:   2017-07-26 23:14:54
 categories: linux
 tags: linux

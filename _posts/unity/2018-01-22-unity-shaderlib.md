@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Unity ShaderLib基本语法和使用"
+title:  "unity ShaderLib基本语法和使用"
 categories: unity
 tags: unity
 ---

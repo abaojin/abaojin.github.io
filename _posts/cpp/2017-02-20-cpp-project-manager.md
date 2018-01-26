@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Cpp Visual Studio项目管理"
+title:  "cpp Visual Studio项目管理"
 date:   2017-02-20 23:14:54
-categories: Cpp
-tags: Cpp
+categories: cpp
+tags: cpp
 ---
 
 * content

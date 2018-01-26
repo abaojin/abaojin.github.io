@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "git clone非master分支的代码"
-categories: github
-tags: github
+categories: git
+tags: git
 ---
 
 * content
