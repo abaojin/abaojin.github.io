@@ -127,19 +127,69 @@ Shader "Custom/TestName"{
 }
 ```
 
+## Instruction
+
+shaderlib除了可编程的不部分，也提供的一些渲染指令，用来控制渲染流程
+中的一些关键步骤。一个完成shader编程类一样应该有属性、方法、指令、标
+记、回调等组成，下面给出一个完成的shader模板。
+
+``` java
+Shader "Custom/TestName"{
+	Properties{
+		_Color("Color", Color) = (1,1,1,1)
+		_MainTex("Main Tex", 2D) = "" {}
+	}
+
+	SubShader{
+		Tags{ "Queue" = "Geometry" "IgnoreProjector" = "True" "RenderType" = "Opaque" }
+		LOD 200
+
+		Cull Back
+
+		ZTest LEqual
+		ZWrite On
+
+		//Blend SrcAlpha OneMinusSrcAlpha
+
+		CGINCLUDE
+		#include "UnityCG.cginc"
+
+		float4 _Color;
+		sampler2D _MainTex;
+
+		struct v2f {
+			float4 vertex:SV_POSITION;
+			float2 uv:TEXCOORD0;
+		};
+
+		v2f vert(appdata_base v) {
+			v2f o;
+			o.vertex = UnityObjectToClipPos(v.vertex);
+			o.uv = v.texcoord;
+			return o;
+		}
+
+		fixed4 frag(v2f i) : Color {
+			half4 c = tex2D(_MainTex, i.uv);
+			return c * _Color;
+		}
+		ENDCG
+
+		Pass {
+			Tags { "LightMode" = "ForwardBase" }
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			ENDCG
+		}
+	}
+	Fallback "Legacy Shaders/VertexLit"
+}
+
+```
+
 ## 参考资料
 
 [Unity Shader Reference](https://docs.unity3d.com/Manual/SL-Reference.html)
-
-
-
-
-
-
-	
-
-
-
-
-
 
