@@ -1,14 +1,16 @@
 ---
 layout: post
-title:  "unity Shader ZTest ZWrite Early-Z技术"
+title:  "unity shader 渲染之ZWrite ZTest Early-Z"
 categories: unity
-tags: unity
+tags: unity shader
 ---
 
 * content
 {:toc}
 
 ## 介绍
+
+本篇主要讨论是引擎中的深度缓冲和深度测试和硬件优化eary-z技术
 
 
 
