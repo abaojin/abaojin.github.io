@@ -54,21 +54,6 @@ tags: unity
         + bundles
         + scripts
         + configs
-  + window
-    + window_app_1.0.exe
-    + 1.0 (大版本号)
-      + 1 (资源版本号可以使用SVN号)
-        + version.txt
-        + depends
-        + bundles
-        + scripts
-        + configs
-      + 2 (资源版本号可以使用SVN号)
-        + version.txt
-        + depends
-        + bundles
-        + scripts
-        + configs
   + osx
     + osx_app_1.0.dpg
     + 1.0 (大版本号)

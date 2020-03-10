@@ -19,7 +19,7 @@ lua作为一种脚本语言，主要的用途有两个方面，一方面是作�
 为了进行性能，这里给出一个简单性能测试通用函数，下面的测试都将使用这个函数进行测试，废话不
 多说，直接贴上代码。
 
-```javascript
+```lua
 function profiler(func, count)
     if type(func) ~= "function" then
         return
@@ -49,7 +49,7 @@ table是Lua 的一种数据结构用来帮助我们创建不同的数据类型�
 下面给出两种方式看看性能数据
 
 * 第一种方式
-```javascript
+```lua
 function func_table_1(c)
     for i = 1, c do
         local t = {}
@@ -66,7 +66,7 @@ end)
 测试结果： function run times=100,average cost time=0.0631
 ```
 * 第二种方式
-```javascript
+```lua
 function func_table_2(c)
     for i = 1, c do
         local t = {0, 0, 0}
@@ -91,7 +91,7 @@ end)
 全局变量和局部变量是编写代码时时刻需要涉及的，但是什么时候使用全局，什么时候使用局部，这些都是非常影响代码运行效率，先分析两种方式，看看性能结果。
 
 * 第一种方式
-```javascript
+```lua
 function func_var_1(c)
     r = 0
     for i = 1, c do
@@ -108,7 +108,7 @@ end)
 ```
 
 * 第二种方式
-```javascript
+```lua
 function func_var_2(c)
     local r = 0
     local t = math.type
