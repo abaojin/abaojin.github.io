@@ -49,6 +49,7 @@ table是Lua 的一种数据结构用来帮助我们创建不同的数据类型�
 下面给出两种方式看看性能数据
 
 * 第一种方式
+
 ```lua
 function func_table_1(c)
     for i = 1, c do
@@ -65,7 +66,9 @@ end)
 
 测试结果： function run times=100,average cost time=0.0631
 ```
+
 * 第二种方式
+
 ```lua
 function func_table_2(c)
     for i = 1, c do
@@ -91,6 +94,7 @@ end)
 全局变量和局部变量是编写代码时时刻需要涉及的，但是什么时候使用全局，什么时候使用局部，这些都是非常影响代码运行效率，先分析两种方式，看看性能结果。
 
 * 第一种方式
+
 ```lua
 function func_var_1(c)
     r = 0
@@ -108,6 +112,7 @@ end)
 ```
 
 * 第二种方式
+
 ```lua
 function func_var_2(c)
     local r = 0
