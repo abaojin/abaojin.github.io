@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "unity shader 渲染顺序"
+title:  "unity shader 渲染管线和顺序"
 categories: unity
 tags: unity shader
 ---
@@ -14,7 +14,27 @@ tags: unity shader
 同学对于Unity引擎的渲染顺序还是没有没有搞清楚，如果你已经非常清楚了，完全跳过阅读，避免浪费你宝
 贵的时间。
 
-## 内容
+## 渲染管线
+
++ 模型数据
++ 顶点着色器（自定义操作）
+  - 顶点裁剪
+  - 面剔除Cull
+  - 图元装配
+  - 光栅化操作
++ 片段着色器（自定义操作）
+  - 文理赋值
+  - 其他操作
++ 各种测试
+  - 模板测试（Stencil Test）
+  - 深度测试 (Depth Test)
+  - 透明度测试 (Alpha Test)
+  - 混合测试 (Blend Mode)
++ 更新帧缓冲中颜色值
+
+备注： 顺序可能存在问题，随时更正。
+
+## 渲染顺序
 
 + Camera Depth 越小越优先
 + RendererQueue 2500以下的（含2500）
