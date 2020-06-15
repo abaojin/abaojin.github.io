@@ -18,17 +18,19 @@ tags: unity shader
 
 + 模型数据
 + 顶点着色器（自定义操作）
+  - 顶点变换
   - 顶点裁剪
   - 面剔除Cull
   - 图元装配
   - 光栅化操作
+  - 深度测试（Eary-Z）
 + 片段着色器（自定义操作）
   - 文理赋值
-  - 其他操作
+  - 光照处理
 + 各种测试
   - 模板测试（Stencil Test）
   - 深度测试 (Depth Test)
-  - 透明度测试 (Alpha Test)
+  - 透明度测试 (Alpha Test，Eary-Z操作会失效)
   - 混合测试 (Blend Mode)
 + 更新帧缓冲中颜色值
 
@@ -53,4 +55,5 @@ Sprite组件和Canvas组件 默认使用的Shader未写入z缓冲，但是进行
 ## 参考资料
 
 [Unity Shader Reference](https://docs.unity3d.com/Manual/SL-Reference.html)
+[Unity AlphaTest AlphaBlending](https://blog.csdn.net/candycat1992/article/details/41599167)
 
