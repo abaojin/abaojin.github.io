@@ -32,6 +32,26 @@ tags: unity shader
   - 深度测试 (Depth Test)
   - 透明度测试 (Alpha Test，Eary-Z操作会失效)
   - 混合测试 (Blend Mode)
+    + Blend Off 关闭混合
+    + Blend SrcFactor DstFactor 基本配置，并启动混合操作，产生颜色乘以SrcFactor加上已有颜色乘以DstFactor
+    + Blend SrcFactor DstFactor SrcFactorA DstFactorA 同上，只是Alpha单独处理
+    + BlendOp Add|Min|Max|Sub|RevSub 混合的方式
+      + Add 默认操作，将源像素和目标像素相加
+      + Sub 将源像素减去目标像素
+      + Min 取目标像素和源像素较小者
+      + Max 取目标像素和源像素较大者
+      + RevSub 将目标像素减去源像素
+    + Blend Factor 混合因子
+      + One 值为1，使用该因子，用来使帧缓冲区颜色和目标颜色完全通过
+      + Zero 值为0，使用该因子，用来删除帧缓冲区颜色和目标颜色
+      + SrcColor——使用此因子为将当前值乘以帧缓冲区源颜色的值
+      + SrcAlpha——使用此因子为将当前值乘以帧缓冲区源颜色的Alpha的值
+      + DstColor——使用此因子为将当前值乘以帧缓冲区目标颜色的值。
+      + DstAlpha——使用此因子为将当前值乘以帧缓冲区目标颜色Alpha分量的值
+      + OneMinusSrcColor——使用此因子为将当前值乘以(1-帧缓冲区源颜色值)
+      + OneMinusSrcAlpha——使用此因子为将当前值乘以(1-帧缓冲区源颜色Alpha分量的值)
+      + OneMinusDstColor——使用此因子为将当前值乘以(1-目标颜色值)
+      + OneMinusDstAlpha——使用此因子为将当前值乘以(1-目标颜色Alpha分量的值) 
 + 更新帧缓冲中颜色值
 
 备注： 顺序可能存在问题，随时更正。
