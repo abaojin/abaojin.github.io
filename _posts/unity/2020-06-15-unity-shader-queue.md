@@ -23,14 +23,14 @@ tags: unity shader
   - 面剔除Cull
   - 图元装配
   - 光栅化操作
-  - 深度测试（Eary-Z）
+  - 深度测试（Early-Z）
 + 片段着色器（自定义操作）
   - 文理赋值
   - 光照处理
 + 各种测试
+  - 透明度测试 （Alpha Test Early-Z操作会失效）
   - 模板测试（Stencil Test）
   - 深度测试 (Depth Test)
-  - 透明度测试 (Alpha Test，Eary-Z操作会失效)
   - 混合测试 (Blend Mode)
     + Blend Off 关闭混合
     + Blend SrcFactor DstFactor 基本配置，并启动混合操作，产生颜色乘以SrcFactor加上已有颜色乘以DstFactor
